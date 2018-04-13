@@ -24,7 +24,7 @@ namespace Multas.Models
         public string Fotografia { get; set; }
         // local de trabalho do Agente
         [Required(ErrorMessage = "A {0} é de preenchimento obrigatório")]
-        [RegularExpression("[A-Za-z0-9ç -]+", ErrorMessage = "Tem de introduzir uma {0} num formato válido")]
+        [RegularExpression("[A-Za-z0-9áéíóúàèìòùâêîôûãõçäëïöüñ -]+", ErrorMessage = "Tem de introduzir uma {0} num formato válido")]
         public string Esquadra { get; set; }
         // criar uma lista de multas aplicadas pelo agente
         public virtual ICollection<Multas> ListaMultas { get; set; }
