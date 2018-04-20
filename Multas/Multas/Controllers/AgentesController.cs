@@ -59,14 +59,31 @@ namespace Multas.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Nome,Fotografia,Esquadra")] Agentes agentes)
+        public ActionResult Create([Bind(Include = "Nome,Fotografia,Esquadra")] Agentes agente,
+                                   HttpPostedFileBase carregaFotografia)
         {
+            /// primeiro que tudo, há que garantir que a imagem existe
+            if (carregaFotografia != null)
+            {
+                //a imagem existe
+            }
+            else
+            {
+                // não foi submetida uma imagem
+            }
+            /// escolher o nome da imagem
+            
+            /// formatar o tamanho da imagem ---> fazer em casa
+            /// será que o ficheiro é uma imagem ---> fazer em casa
+            /// guardar a imagem no disco do servidor
+
+
             // ModelState.IsValid --> confronta os dados recebidos como o modelo,
             // para verificar se o que recebeu é o que deveria ter sido recebido
             if (ModelState.IsValid)
             {
                 // adiciona o Agente à estrutura de dados
-                db.Agentes.Add(agentes);
+                db.Agentes.Add(agente);
                 // efectuam um commit à BD
                 db.SaveChanges();
                 // redirecciona o utilizador para a página do inicio
@@ -74,7 +91,7 @@ namespace Multas.Controllers
             }
             // se aqui chegou, é pq aalguma coisa correu mal...
             // devolvo os dados do agente à view
-            return View(agentes);
+            return View(agente);
         }
 
         // GET: Agentes/Edit/5
