@@ -185,10 +185,20 @@ namespace Multas.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteNewMethod(int id)
         {
-            Agentes agentes = db.Agentes.Find(id);
-            db.Agentes.Remove(agentes);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            Agentes agente = db.Agentes.Find(id);
+
+            try
+            {
+                db.Agentes.Remove(agente);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (Exception){
+                ModelState.AddModelError("",string.Format("aconteceu um erro com a eliminação do agente {0}, porque há multas associadas a ele.",agente.Nome));
+            }
+            // se aqui chego, é porque alguma ccoisa correu mal
+            return View(agente);
+    
         }
 
         protected override void Dispose(bool disposing)
