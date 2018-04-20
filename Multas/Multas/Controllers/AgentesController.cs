@@ -36,14 +36,16 @@ namespace Multas.Controllers
             //caso não haja ID, nada é feito
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                // return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             // pesquisa os dados do agente, cujo ID foi fornecido
             Agentes agentes = db.Agentes.Find(id);
             // valida se foi encontrado algum Agente, se não foi encontrado, nada faz
             if (agentes == null)
             {
-                return HttpNotFound();
+                // return HttpNotFound();
+                return RedirectToAction("Index");
             }
             // apresenta na view os dados do agente
             return View(agentes);
@@ -137,12 +139,14 @@ namespace Multas.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                // return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             Agentes agentes = db.Agentes.Find(id);
             if (agentes == null)
             {
-                return HttpNotFound();
+                // return HttpNotFound();
+                return RedirectToAction("Index");
             }
             return View(agentes);
         }
@@ -170,12 +174,14 @@ namespace Multas.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                // return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index"); // redirecciona para a página de início
             }
             Agentes agentes = db.Agentes.Find(id);
             if (agentes == null)
             {
-                return HttpNotFound();
+                // return HttpNotFound();
+                return RedirectToAction("Index");
             }
             return View(agentes);
         }
