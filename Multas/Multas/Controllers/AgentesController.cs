@@ -20,8 +20,11 @@ namespace Multas.Controllers
         public ActionResult Index()
         {
             // em LINQ : db.Agentes.ToList() --> em sql : select * from Agentes;
+            // sql : select * from Agentes order by Nome
             // lista de agentes, presentes na BD
-            return View(db.Agentes.ToList());
+            var listaAgentes = db.Agentes.ToList().OrderBy(a => a.Nome);
+            return View(listaAgentes);
+            //return View(db.Agentes.ToList());
         }
 
         // GET: Agentes/Details/5
