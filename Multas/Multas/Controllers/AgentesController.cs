@@ -66,8 +66,20 @@ namespace Multas.Controllers
 
             // Gerar o ID para o novo agente
             int novoID = 0;
-            novoID = db.Agentes.Max(a=>a.ID)+1;
+            if (db.Agentes.Count() != 0)
+            {
+                novoID = db.Agentes.Max(a => a.ID) + 1;
+            }
+            else
+            {
+                novoID = 1;
+            }
             agente.ID = novoID;   // atribuir o ID deste Agente
+            // ********************************************
+            // outra hipótese de validar a atribuição de ID
+            //try{}
+            //catch (Exception){}
+            // ********************************************
 
             // variável auxiliar
             string nomeFicheiro = "Agente_" + novoID + ".jpg";
@@ -100,16 +112,22 @@ namespace Multas.Controllers
             // para verificar se o que recebeu é o que deveria ter sido recebido
             if (ModelState.IsValid)
             {
-                // adiciona o Agente à estrutura de dados
-                db.Agentes.Add(agente);
-                // efectuam um commit à BD
-                db.SaveChanges();
-                // guardar o ficheiro no disco rígido
-                carregaFotografia.SaveAs(caminho);
-                // redirecciona o utilizador para a página do inicio
-                return RedirectToAction("Index");
+                try
+                {
+                    // adiciona o Agente à estrutura de dados
+                    db.Agentes.Add(agente);
+                    // efectuam um commit à BD
+                    db.SaveChanges();
+                    // guardar o ficheiro no disco rígido
+                    carregaFotografia.SaveAs(caminho);
+                    // redirecciona o utilizador para a página do inicio
+                    return RedirectToAction("Index");
+                }
+                catch (Exception){
+                    ModelState.AddModelError("","Ocorreu um erro na criação do Agente "+agente.Nome+".");
+                }
             }
-            // se aqui chegou, é pq aalguma coisa correu mal...
+            // se aqui chegou, é porque alguma coisa correu mal...
             // devolvo os dados do agente à view
             return View(agente);
         }
