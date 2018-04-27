@@ -22,7 +22,7 @@ namespace Multas.Controllers
             // em LINQ : db.Agentes.ToList() --> em sql : select * from Agentes;
             // sql : select * from Agentes order by Nome
             // lista de agentes, presentes na BD
-            var listaAgentes = db.Agentes.ToList().OrderBy(a => a.Nome);
+            var listaAgentes = db.Agentes.OrderBy(a => a.Nome).ToList();
             return View(listaAgentes);
             //return View(db.Agentes.ToList());
         }
