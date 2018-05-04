@@ -14,7 +14,7 @@ namespace Multas.Controllers
     public class AgentesController : Controller
     {
         //cria um objecto privado que 'referência' a BD
-        private MultasDb db = new MultasDb();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Agentes
         public ActionResult Index()

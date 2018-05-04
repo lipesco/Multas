@@ -1,12 +1,17 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace IdentitySample.Models
+namespace Multas.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
+    /// <summary>
+    /// identifica um Utilizador, dentro do sistema de autenticaçáo Identity
+    /// </summary>
+
     public class ApplicationUser : IdentityUser
     {
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
@@ -18,10 +23,15 @@ namespace IdentitySample.Models
         }
     }
 
+    /// <summary>
+    /// especifica as características da base de dados da autenticação,
+    /// mais,
+    /// as caracteristicas da base de dados do 'negócio' - Multas
+    /// </summary>
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("MultasDbConnectionString", throwIfV1Schema: false)
         {
         }
 
@@ -35,6 +45,22 @@ namespace IdentitySample.Models
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+        }
+
+        // dados específicos sobre as multas
+        // definir as 'tabelas' da base de dados
+        public virtual DbSet<Viaturas> Viaturas { get; set; }
+        public virtual DbSet<Condutores> Condutores { get; set; }
+        public virtual DbSet<Agentes> Agentes { get; set; }
+        public virtual DbSet<Multas> Multas { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

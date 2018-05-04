@@ -5,7 +5,7 @@
    /// </summary>
    private void iniciaAplicacao() {
 
-      MultasDb db = new MultasDb ();
+      ApplicationDbContext db = new ApplicationDbContext ();
 
       var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
       var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
