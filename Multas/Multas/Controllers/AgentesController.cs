@@ -159,17 +159,55 @@ namespace Multas.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Nome,Fotografia,Esquadra")] Agentes agentes)
+        public ActionResult Edit([Bind(Include = "ID,Nome,Esquadra,Fotografia")] Agentes agente,
+                                  HttpPostedFileBase editaFotografia)
         {
+
+            //////////////////////////////////////////////////////////////////////////
+
+
+            //int valorID = agente.ID;
+
+            string nomeFicheiro = agente.Fotografia; // "Agente_" + valorID + ".jpg";
+            string caminho = "";
+            /// primeiro que tudo, há que garantir que a imagem existe
+            if (editaFotografia != null)
+            {
+                agente.Fotografia = editaFotografia.FileName;
+                //a imagem existe
+            //    agente.Fotografia = nomeFicheiro;
+                // definir o nome do ficheiro e o sue caminho
+                caminho = Path.Combine(Server.MapPath("~/imagens/"), nomeFicheiro);
+            }
+            
+
+            ///////////////////////////////////////////////////////////////////////////
+
+
             if (ModelState.IsValid)
             {
-                // update
-                db.Entry(agentes).State = EntityState.Modified;
-                // commit
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    // update
+                    db.Entry(agente).State = EntityState.Modified;
+                    // commit
+                    db.SaveChanges();
+                    if (editaFotografia != null)
+                    {
+                        // guardar o ficheiro no disco rígido
+                        editaFotografia.SaveAs(caminho);
+                    }
+                    return RedirectToAction("Index");
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError("", "Ocorreu um erro na edição do Agente " + agente.Nome + ".");
+                }
+
             }
-            return View(agentes);
+
+
+            return View(agente);
         }
 
         // GET: Agentes/Delete/5

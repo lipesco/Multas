@@ -1,0 +1,9 @@
+
+
+  Autenticação - é um processo onde a aplicaçáo obtém confirmação de que o utilizador é que diz ser.
+  
+  Autorização - garantir o acesso de recursos a quem a eles, e só a eles, tem acesso.
+  
+  Role - perfil de utilizador
+         papel
+		 associar um utilizador a um grupo de utilizadores
