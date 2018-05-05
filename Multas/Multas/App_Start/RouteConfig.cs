@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace Multas
+namespace Multas_tC
 {
     public class RouteConfig
     {

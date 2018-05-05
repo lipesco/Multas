@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Multas
+namespace Multas_tC
 {
     public class FilterConfig
     {

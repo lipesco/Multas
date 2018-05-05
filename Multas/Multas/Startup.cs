@@ -1,18 +1,21 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Multas.Models;
+using Multas_tC.Models;
 using Owin;
 
-namespace Multas
+namespace Multas_tC
 {
+
     public partial class Startup
     {
+
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+
+            // invoca a função que cria os Roles e os Utilizadores
             iniciaAplicacao();
         }
-
 
 
         /// <summary>
@@ -22,7 +25,7 @@ namespace Multas
         private void iniciaAplicacao()
         {
 
-             ApplicationDbContext db = new ApplicationDbContext();
+            ApplicationDbContext db = new ApplicationDbContext();
 
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
@@ -47,13 +50,11 @@ namespace Multas
                 roleManager.Create(role);
             }
 
-
-
             // criar um utilizador 'Agente'
             var user = new ApplicationUser();
             user.UserName = "tania@mail.pt";
             user.Email = "tania@mail.pt";
-            //user.Nome = "Luís Freitas";
+            //  user.Nome = "Luís Freitas";
             string userPWD = "123_Asd";
             var chkUser = userManager.Create(user, userPWD);
 
@@ -68,10 +69,6 @@ namespace Multas
 
 
 
-
-
-
-
-
     }
 }
+

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace Multas.Models
+namespace Multas_tC.Models
 {
     public class Multas
     {

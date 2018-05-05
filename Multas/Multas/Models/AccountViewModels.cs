@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Multas.Models
+namespace Multas_tC.Models
 {
     public class ExternalLoginConfirmationViewModel
     {

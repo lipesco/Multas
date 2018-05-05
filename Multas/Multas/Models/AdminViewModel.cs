@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace Multas.Models
+namespace Multas_tC.Models
 {
     public class RoleViewModel
     {

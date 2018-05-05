@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Multas.Models
+namespace Multas_tC.Models
 {
     public class Condutores
     {

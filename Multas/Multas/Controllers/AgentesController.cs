@@ -7,9 +7,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Multas.Models;
+using Multas_tC.Models;
 
-namespace Multas.Controllers
+namespace Multas_tC.Controllers
 {
     public class AgentesController : Controller
     {

@@ -1,10 +1,10 @@
-﻿using Multas.Models;
+﻿using Multas_tC.Models;
 using System.Data.Entity;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
-namespace Multas
+namespace Multas_tC
 {
     // Note: For instructions on enabling IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=301868

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace Multas.Models
+namespace Multas_tC.Models
 {
     public class Agentes
     {
@@ -30,5 +30,11 @@ namespace Multas.Models
         public string Esquadra { get; set; }
         // criar uma lista de multas aplicadas pelo agente
         public virtual ICollection<Multas> ListaMultas { get; set; }
+
+        // ***************************************************************
+        // *              criar uma fk para autenticação                 *
+        // ***************************************************************
+        // [Required]
+        public string UserName { get; set; }
     }
 }
