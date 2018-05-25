@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Security.Claims;
@@ -14,6 +15,17 @@ namespace Multas_tC.Models
 
     public class ApplicationUser : IdentityUser
     {
+        /// <summary>
+        /// adicionar atributos especificos de utilizador
+        /// - nome
+        /// - apelido
+        /// - data nascimento
+        /// </summary>
+
+        public string NomeProprio { get; set; }
+        public string Apelido { get; set; }
+        public DateTime? DataNascimento { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Multas_tC.Models
@@ -61,7 +62,7 @@ namespace Multas_tC.Models
 
     public class RegisterViewModel
     {
-        [Required]
+        [Required(ErrorMessage ="Escreva um email válido.")]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
@@ -76,6 +77,15 @@ namespace Multas_tC.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        //**************************************************
+        //atributos especificos do utilizador que se regista
+
+        public string NomeProprio { get; set; }
+        public string Apelido { get; set; }
+        [Display(Name ="Data de Nascimento")]
+        public DateTime DataNasc { get; set; }
+
     }
 
     public class ResetPasswordViewModel
